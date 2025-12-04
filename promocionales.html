@@ -1,51 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coffe Break</title>
-    <link rel="stylesheet" href="stile.css">
-    <link rel="png" type="imagen/favicono.png" href="img/favicono.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffe Break</title>
+  <link rel="stylesheet" href="stile.css">
+  <!-- favicon corregido -->
+  <link rel="icon" type="image/png" href="img/favicono.png">
 </head>
 <body>
-     <nav>
-      <div>
-        <img src="img/logo coffe break.png" alt="principal" class="logo">    
-         <ul>
-            <li> <a href="reseña.html"> Descubre más </a> </li>
-            <li> <a href="productos.html"> Productos </a> </li>
-            <li> <a href="index.html"> <img src="img/casa.png" class="casa"> </a></li>
-         </ul>
-      </div>
-         <div>
-            <a href="#">
-                <svg width="20" height="20" fill="currentColor"><path d="M10 2C6.686 2 4 4.686 4 8c0 5.25 6 10 6 10s6-4.75 6-10c0-3.314-2.686-6-6-6zm0 8.5A2.5 2.5 0 1 1 10 5a2.5 2.5 0 0 1 0 5.5z"/></svg>
-                Localizar Tienda
-            </a>
-            <button> Ingresar </button>
-            <button> &Uacute;nete </button>
-         </div>
-     </nav> 
-        <header>
-            <h3 class="section-title"> ¡Conoce nuestras ofertas! </h3>
-        </header>
-            <main>
-                <section class="videos-section">
-                    <video src="img/video2.mp4" controls></video>
-                    <a href="https://youtu.be/BXpJHvQitno" target="_blank" rel="noopener noreferrer"> Ver video en YouTube</a>
-                </section>
+  <nav>
+    <div>
+      <img src="img/logo coffe break.png" alt="principal" class="logo">
+      <ul>
+        <li><a href="reseña.html">Descubre más</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="index.html"><img src="img/casa.png" class="casa" alt="inicio"></a></li>
+      </ul>
+    </div>
+    <div>
+      <a href="#">
+        <svg width="20" height="20" fill="currentColor"><path d="M10 2C6.686 2 4 4.686 4 8c0 5.25 6 10 6 10s6-4.75 6-10c0-3.314-2.686-6-6-6zm0 8.5A2.5 2.5 0 1 1 10 5a2.5 2.5 0 0 1 0 5.5z"/></svg>
+        Localizar Tienda
+      </a>
+      <button>Ingresar</button>
+      <button>Únete</button>
+    </div>
+  </nav>
 
-                <section class="posts-section">
-                    <img src="img/navidad.jpg" alt="postn" class="navidad">
-                    <img src="img/buenfin.jpg" alt="post1" class="buenfin">
-                    <img src="img/especial.jpg" alt="post2" class="hallowen">
-                    <img src="img/banner.jpg" alt="post" class="banner">
-                </section>
+  <header>
+    <h3 class="section-title">¡Conoce nuestras ofertas!</h3>
+  </header>
 
-                <section class="jingle-section">
-                    <audio controls class="jingle"> <source src="img/jingle.mpeg" type="audio/mp3"> </audio>
-                </section>
-            </main>
+  <main>
+    <!-- Sección Promocionales: organizado en grid para que sea proporcional -->
+    <section id="promocionales" class="promocionales">
+      <div class="container">
+
+        <h2 class="section-title">Promocionales</h2>
+
+        <!-- Grid principal: video local + ficha youtube + cards de imágenes + audio -->
+        <div class="promo-grid">
+
+          <!-- Video local -->
+          <article class="promo-card">
+            <div class="thumb">
+              <video src="img/video2.mp4" controls preload="none" playsinline></video>
+            </div>
+            <div class="meta">
+              <h3>Video local</h3>
+              <p>Reproductor del video promocional</p>
+            </div>
+          </article>
+
+          <!-- YouTube short (lazy-load al click) -->
+          <article class="promo-card">
+            <div class="thumb yt-lite" id="yt-BXpJHvQitno"
+                 style="background-image:url('https://img.youtube.com/vi/BXpJHvQitno/hqdefault.jpg');"
+                 role="button" aria-label="Reproducir Short en YouTube">
+              <div class="play" aria-hidden="true">►</div>
+            </div>
+            <div class="meta">
+              <h3>Short en YouTube</h3>
+              <p>Haz clic en la miniatura para reproducir</p>
+              <p><a href="https://youtu.be/BXpJHvQitno" target="_blank" rel="noopener noreferrer">Abrir en YouTube</a></p>
+            </div>
+          </article>
+
+          <!-- Post: Navidad -->
+          <article class="promo-card">
+            <div class="thumb">
+              <img src="img/navidad.jpg" alt="Oferta Navidad" loading="lazy">
+            </div>
+            <div class="meta">
+             
+            </div>
+          </article>
+
+          <!-- Post: Buen Fin -->
+          <article class="promo-card">
+            <div class="thumb">
+              <img src="img/buenfin.jpg" alt="Oferta Buen Fin" loading="lazy">
+            </div>
+            <div class="meta">
+              
+            </div>
+          </article>
+
+          <!-- Post: Especial / Halloween -->
+          <article class="promo-card">
+            <div class="thumb">
+              <img src="img/especial.jpg" alt="Promoción Especial" loading="lazy">
+            </div>
+            <div class="meta">
+              
+            </div>
+          </article>
+
+          <!-- Banner (tarjeta más ancha) -->
+          <article class="promo-card promo-banner">
+            <div class="thumb">
+              <img src="img/banner.jpg" alt="Banner promoción" loading="lazy">
+            </div>
+            <div class="meta">
+              <h3>Banner</h3>
+              <p>Mensaje destacado de la promoción</p>
+            </div>
+          </article>
+
+          <!-- Audio (jingle) -->
+          <article class="promo-card">
+            <div class="thumb">
+              <!-- Si no tienes artwork específico, usa banner como fallback -->
+              <img src="img/promo-audio.jpg" alt="Artwork jingle" loading="lazy" onerror="this.src='img/banner.jpg'">
+            </div>
+            <div class="meta">
+              <h3>Jingle</h3>
+              <p>Escucha nuestro jingle</p>
+              <audio controls preload="none">
+                <source src="img/jingle.mpeg" type="audio/mpeg">
+                Tu navegador no soporta reproducción de audio.
+              </audio>
+            </div>
+          </article>
+
+        </div> <!-- .promo-grid -->
+
+      </div> <!-- .container -->
+    </section>
+  </main>
                 
         <footer>
           <div class="footer-social">
@@ -63,4 +146,5 @@
 </body>
 
 </html>
+
 
