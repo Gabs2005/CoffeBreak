@@ -680,71 +680,70 @@ section ul li a:hover{
   color:#5c350f
 }
 
-/* --- Estilos recomendados para promocionales (añadir al final de stile.css) --- */
+/* Añade estas reglas al final de tu stile.css o como archivo separado y enlázalo */
 
-/* Variables y contenedor */
-:root{
-  --promo-gap: 1rem;
-  --card-radius: 8px;
-  --card-bg: #fff;
-  --muted: #666;
-  --shadow: 0 6px 20px rgba(0,0,0,0.08);
-  --container-max: 1100px;
-}
-
+/* Contenedor y grid */
 .promocionales .container {
-  max-width: var(--container-max);
+  max-width: 1200px;
   margin: 0 auto;
   padding: 1rem;
 }
-
-/* Grid principal de tarjetas */
 .promo-grid {
   display: grid;
-  gap: var(--promo-gap);
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  /* responsive: tarjetas mín. 240px, se expanden a 1fr */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   align-items: start;
 }
 
 /* Tarjeta */
 .promo-card {
-  background: var(--card-bg);
-  border-radius: var(--card-radius);
-  box-shadow: var(--shadow);
+  background: #fff;
+  border-radius: 8px;
   overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
   display: flex;
   flex-direction: column;
-  transition: transform .15s ease, box-shadow .15s ease;
+  transition: transform .12s ease, box-shadow .12s ease;
 }
 .promo-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
 
-/* Thumb: mantiene proporción consistente (16:9) */
-.thumb {
+/* Thumb: contenedor que mantiene una proporción */
+.promo-card .thumb {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
   overflow: hidden;
   background: #000;
-}
-@supports not (aspect-ratio: 16/9) {
-  .thumb { padding-top: 56.25%; }
-  .thumb > * { position:absolute; top:0; left:0; width:100%; height:100%; }
+  display: block;
+  /* límite de altura para evitar thumb gigante en pantallas enormes */
+  max-height: 620px;
 }
 
-/* Imágenes/vídeo dentro de thumb: ocupan todo y recortan si es necesario */
+/* Proporciones específicas basadas en tus tamaños reales */
+/* Banner 1200 x 400 -> ratio 3/1 */
+.promo-banner .thumb { aspect-ratio: 3 / 1; }
+
+/* Buenfin 3300 x 2550 -> approx 4/3 (landscape) */
+.promo-landscape .thumb { aspect-ratio: 4 / 3; }
+
+/* Halloween / Navidad: portrait (aprox 2/3) */
+.promo-portrait .thumb { aspect-ratio: 2 / 3; }
+
+/* Video and YouTube thumbnail use 16:9 for consistent playback area */
+.promo-video .thumb,
+.promo-yt .thumb { aspect-ratio: 16 / 9; }
+
+/* Imagen / video dentro del thumb */
 .thumb img,
 .thumb video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* recorta para llenar el recuadro y mantener uniforme */
   display: block;
 }
 
-/* Banner: tarjeta que ocupa más espacio en pantallas grandes */
-.promo-banner { grid-column: span 2; }
-@media (max-width: 900px) {
-  .promo-banner { grid-column: span 1; }
-}
+/* Si en un caso concreto NO quieres recorte: añade .img-contain a .thumb y usa contain */
+.thumb.img-contain img { object-fit: contain; background: #f4f4f4; }
 
 /* YouTube lite miniatura */
 .yt-lite {
@@ -770,34 +769,32 @@ section ul li a:hover{
   justify-content: center;
 }
 
-/* Meta info */
-.meta { padding: 0.75rem; }
-.meta h3 { margin: 0 0 0.35rem 0; font-size: 1.05rem; }
-.meta p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+/* Meta (texto bajo la miniatura) */
+.meta { padding: .75rem; }
+.meta h3 { margin: 0 0 .35rem 0; font-size: 1.05rem; }
+.meta p { margin: 0; color: #666; font-size: .95rem; }
 
-/* Audio: control a 100% del ancho de la tarjeta */
-.meta audio, .promo-card audio { width: 100%; margin-top: 0.5rem; }
+/* Audio a ancho completo dentro de la tarjeta */
+.meta audio, .promo-card audio { width: 100%; margin-top: .5rem; }
 
-/* Ajustes específicos solicitados (reemplazan medidas fijas previas) */
-/* .banner, .buenfin, .hallowen, .navidad ahora usan la lógica responsive anterior */
-/* Si necesitabas clases puntuales para estilos extra, las puedes mantener pero sin width/height fijos. */
-.banner { width: 100%; height: auto; display:block; }
-.buenfin, .hallowen, .navidad { width: 100%; height: auto; display:block; }
-
-/* Pequeños ajustes para móviles */
+/* Responsive tweaks */
+@media (max-width: 900px) {
+  .promo-banner { grid-column: span 1; } /* banner deja de ocupar 2 columnas */
+  .promo-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+}
 @media (max-width: 480px) {
-  :root { --promo-gap: 0.6rem; }
+  .promo-grid { grid-template-columns: 1fr; gap: .6rem; }
   .yt-lite .play { width: 56px; height: 56px; font-size: 24px; }
-  .promo-grid { grid-template-columns: 1fr; }
+  .promo-card { border-radius: 6px; }
 }
 
-/* Mejora en accesibilidad: foco visible para elementos interactivos */
-.yt-lite:focus { outline: 3px solid rgba(21,156,228,0.6); outline-offset: 2px; }
-
-.grupo {
-  padding: 100px;
-  display: flex;
-  justify-content: space-between; /* Distribuye los elementos */
+/* Correcciones para tus clases antiguas (si usas .buenfin, .hallowen, .navidad, .banner en <img>) */
+/* Evitan tamaños fijos que estiraban las imágenes */
+.buenfin, .hallowen, .navidad, .banner {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
 }
 
 footer {
@@ -827,3 +824,4 @@ footer {
   font-size: 0.97em;
 
 }
+
