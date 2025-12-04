@@ -797,6 +797,57 @@ section ul li a:hover{
   object-fit: cover;
 }
 
+/* ----- Estilos para elementos SIN recuadro (promo-plain) ----- */
+/* Mantienen proporción pero quitan fondo, borde y meta text */
+
+.promo-plain {
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  display: block; /* no tarjeta con meta debajo */
+  align-self: stretch;
+}
+
+/* Oculta texto meta (si prefieres mostrar algún título, elimina esta línea) */
+.promo-plain .meta { display: none; }
+
+/* El thumb en modo plain ocupa todo el ancho y mantiene el aspect-ratio adecuado */
+.promo-plain .thumb {
+  width: 100%;
+  overflow: hidden;
+  display: block;
+  background: transparent;
+  /* límite de altura para evitar imágenes monstruosas en pantallas muy grandes */
+  max-height: 720px;
+}
+
+/* Asigna proporciones específicas (como antes) para que se muestren proporcionadas */
+.promo-banner-plain .thumb { aspect-ratio: 3 / 1; }      /* banner 1200x400 */
+.promo-landscape-plain .thumb { aspect-ratio: 4 / 3; }   /* buen fin */
+.promo-portrait-plain .thumb { aspect-ratio: 2 / 3; }    /* halloween / navidad */
+
+/* Imagen ocupa todo el contenedor; object-fit: cover mantiene estética */
+.promo-plain .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Si quieres que esas imágenes no se recorten (verlas completas), añade la clase .img-contain al thumb:
+   <div class="thumb img-contain"> ... </div>
+   y usa esta regla: */
+.thumb.img-contain img { object-fit: contain; background: #f4f4f4; }
+
+/* Ajustes responsive (mantener comportamiento en móvil) */
+@media (max-width: 900px) {
+  .promo-banner-plain { grid-column: span 1; } /* en tablet/phone no ocupa varias columnas */
+}
+@media (max-width: 480px) {
+  .promo-plain .thumb { max-height: 420px; }
+}
+
 footer {
     padding: 10px 8px 16px 8px;
     background-color: #eac784;
@@ -824,4 +875,5 @@ footer {
   font-size: 0.97em;
 
 }
+
 
