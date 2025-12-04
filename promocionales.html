@@ -33,17 +33,15 @@
   </header>
 
   <main>
-    <!-- Sección Promocionales: organizado en grid para que sea proporcional -->
+    <!-- Sección Promocionales -->
     <section id="promocionales" class="promocionales">
       <div class="container">
-
         <h2 class="section-title">Promocionales</h2>
 
-        <!-- Grid principal: video local + ficha youtube + cards de imágenes + audio -->
         <div class="promo-grid">
 
-          <!-- Video local -->
-          <article class="promo-card">
+          <!-- Video local (se mantiene con tarjeta) -->
+          <article class="promo-card promo-video">
             <div class="thumb">
               <video src="img/video2.mp4" controls preload="none" playsinline></video>
             </div>
@@ -54,10 +52,10 @@
           </article>
 
           <!-- YouTube short (lazy-load al click) -->
-          <article class="promo-card">
+          <article class="promo-card promo-yt">
             <div class="thumb yt-lite" id="yt-BXpJHvQitno"
                  style="background-image:url('https://img.youtube.com/vi/BXpJHvQitno/hqdefault.jpg');"
-                 role="button" aria-label="Reproducir Short en YouTube">
+                 role="button" aria-label="Reproducir Short en YouTube" tabindex="0">
               <div class="play" aria-hidden="true">►</div>
             </div>
             <div class="meta">
@@ -67,39 +65,37 @@
             </div>
           </article>
 
-         <!-- Reemplaza las article del banner, buen fin, halloween y navidad por estas -->
-<!-- Banner (sin recuadro) -->
-<article class="promo-plain promo-banner-plain">
-  <div class="thumb">
-    <img src="img/banner.jpg" alt="Banner promoción" loading="lazy">
-  </div>
-</article>
+          <!-- Banner (sin recuadro) -->
+          <article class="promo-plain promo-banner-plain">
+            <div class="thumb">
+              <img src="img/banner.jpg" alt="Banner promoción" loading="lazy">
+            </div>
+          </article>
 
-<!-- Buen Fin (sin recuadro) -->
-<article class="promo-plain promo-landscape-plain">
-  <div class="thumb">
-    <img src="img/buenfin.jpg" alt="Buen Fin" loading="lazy">
-  </div>
-</article>
+          <!-- Buen Fin (sin recuadro) -->
+          <article class="promo-plain promo-landscape-plain">
+            <div class="thumb">
+              <img src="img/buenfin.jpg" alt="Buen Fin" loading="lazy">
+            </div>
+          </article>
 
-<!-- Halloween / Especial (sin recuadro) -->
-<article class="promo-plain promo-portrait-plain">
-  <div class="thumb">
-    <img src="img/especial.jpg" alt="Promoción Especial" loading="lazy">
-  </div>
-</article>
+          <!-- Halloween / Especial (sin recuadro) -->
+          <article class="promo-plain promo-portrait-plain">
+            <div class="thumb">
+              <img src="img/especial.jpg" alt="Promoción Especial" loading="lazy">
+            </div>
+          </article>
 
-<!-- Navidad (sin recuadro) -->
-<article class="promo-plain promo-portrait-plain">
-  <div class="thumb">
-    <img src="img/navidad.jpg" alt="Navidad" loading="lazy">
-  </div>
-</article>
+          <!-- Navidad (sin recuadro) -->
+          <article class="promo-plain promo-portrait-plain">
+            <div class="thumb">
+              <img src="img/navidad.jpg" alt="Navidad" loading="lazy">
+            </div>
+          </article>
 
           <!-- Audio (jingle) -->
-          <article class="promo-card">
+          <article class="promo-card promo-audio">
             <div class="thumb">
-              <!-- Si no tienes artwork específico, usa banner como fallback -->
               <img src="img/promo-audio.jpg" alt="Artwork jingle" loading="lazy" onerror="this.src='img/banner.jpg'">
             </div>
             <div class="meta">
@@ -113,27 +109,30 @@
           </article>
 
         </div> <!-- .promo-grid -->
-
       </div> <!-- .container -->
     </section>
   </main>
-                
-        <footer>
-          <div class="footer-social">
-            <img src="img/face-02.png" alt="facebook">
-            <img src="img/ig-02.png" alt="instagram">
-            <img src="img/x-02.png" alt="X">
-          </div>
 
-          <div class="footer-info">
-            <small>
-                © 2025. Coffe Break Company. Reservados todos los derechos <br>
-             mx| granosycafe@gmail.com | Tel. 9995027669 | 02/01/2025
-            </small>
-        </footer>
-</body>
+  <footer>
+    <div class="footer-social">
+      <img src="img/face-02.png" alt="facebook">
+      <img src="img/ig-02.png" alt="instagram">
+      <img src="img/x-02.png" alt="X">
+    </div>
 
-</html>
+    <div class="footer-info">
+      <small>
+        © 2025. Coffe Break Company. Reservados todos los derechos <br>
+        mx | granosycafe@gmail.com | Tel. 9995027669 | 02/01/2025
+      </small>
+    </div>
+  </footer>
 
-
-
+  <!-- Script: lazy-load YouTube embed al hacer click / Enter -->
+  <script>
+    function loadYT(el){
+      const id = el.id.replace('yt-','');
+      const iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
+      iframe.title = 'YouTube video player';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;
